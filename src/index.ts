@@ -5,7 +5,7 @@ import { connectDatabase } from "./database/mongo";
 
 
 
-app.listen(3001, async () => {
+app.listen(config.PORT, async () => {
   console.log(`Server open on port ${config.PORT}`);
   await connectDatabase();
 
