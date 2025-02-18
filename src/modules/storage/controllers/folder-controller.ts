@@ -9,3 +9,7 @@ async function createFolder(ctx:  Context) {
   ctx.status = 200;
   ctx.body = result;
 }
+
+export const folderController = {
+  createFolder
+}
