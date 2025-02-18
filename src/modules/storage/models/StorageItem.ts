@@ -4,7 +4,7 @@ import { folderSchema, IFolder } from "./Folder";
 
 export type BaseStorageItem = {
   name: string,
-  path: string | null
+  path: string
 }
 
 export type IStorageItem = IFile | IFolder
