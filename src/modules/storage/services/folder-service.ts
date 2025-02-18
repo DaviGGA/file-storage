@@ -23,7 +23,14 @@ async function findFolderDirectDescendants(id: string) {
   })
 }
 
+async function findFirst() {
+  return await Folder.find({
+    path: folderSearch.directDescendants("user")
+  })
+}
+
 export const folderService = {
   createFolder,
-  findFolderDirectDescendants
+  findFolderDirectDescendants,
+  findFirst
 }

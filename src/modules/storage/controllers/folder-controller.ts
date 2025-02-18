@@ -18,7 +18,14 @@ async function findFolderDirectDescendants(ctx: Context) {
   ctx.body = result;
 }
 
+async function findFirst(ctx: Context) {
+  const result = await folderService.findFirst();
+  ctx.staus = 200;
+  ctx.body = result;
+}
+
 export const folderController = {
   createFolder,
-  findFolderDirectDescendants
+  findFolderDirectDescendants,
+  findFirst
 }
