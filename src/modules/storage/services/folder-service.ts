@@ -1,11 +1,10 @@
-import { NotFound } from "../../../errors/NotFound";
 import { CreateFolder } from "../@types/CreateFolder"
 import { Folder } from "../models/StorageItem"
-import { storagePath } from "../utils/storagePath"
+import {join} from "path";
 
 async function createFolder({name, path}: CreateFolder) {
   const folderPath = path ? 
-    storagePath.joinPaths(name, path) : storagePath.joinPaths("user", name);
+    join(name, path) : join("user", name);
 
   return await Folder.create({
     name,
