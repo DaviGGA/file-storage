@@ -4,7 +4,7 @@ import { BaseStorageItem, StorageItem } from "./StorageItem";
 export type IFile = {
   size: number,
   type: "file",
-  file_type: string,
+  mimetype: string,
 } & BaseStorageItem & Document
 
 
@@ -13,7 +13,7 @@ export const fileSchema = new mongoose.Schema<IFile>({
     required: true,
     type: Number
   },
-  file_type: {
+  mimetype: {
     required: true,
     type: String
   }
