@@ -2,12 +2,12 @@ import { NotFound } from "../../../errors/NotFound";
 import { CreateFolder } from "../@types/CreateFolder"
 import { IFolder } from "../models/Folder";
 import { Folder } from "../models/StorageItem"
-import {join} from "path";
+
 import { folderSearch } from "../utils/folder-search";
+import { pathHandler } from "../utils/path-handler";
 
 async function createFolder({name, path}: CreateFolder) {
-  const folderPath = path ? 
-    join(path, name) : join("user", name);
+  const folderPath = pathHandler.joinPath(name, path);
 
   return await Folder.create({
     name,
