@@ -3,11 +3,19 @@ import { BaseStorageItem, StorageItem } from "./StorageItem";
 
 export type IFile = {
   size: number,
-  type: "file"
+  type: "file",
+  mimetype: string,
 } & BaseStorageItem & Document
 
 
 export const fileSchema = new mongoose.Schema<IFile>({
-  size: Number,
+  size: {
+    required: true,
+    type: Number
+  },
+  mimetype: {
+    required: true,
+    type: String
+  }
 })
 
