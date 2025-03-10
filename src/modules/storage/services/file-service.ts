@@ -10,7 +10,8 @@ async function createFile({name, path, file}: CreateFile) {
     name: fileName,
     path: pathHandler.joinPath(fileName, path ?? null),
     size: file.size,
-    mimetype: file.mimetype
+    mimetype: file.mimetype,
+    image_id: file.filename
   })
 
 }
