@@ -13,6 +13,19 @@ async function createFile(ctx: Context) {
   ctx.body = newFile;
 }
 
+async function downloadFile(ctx: Context) {
+
+  const { image_id } = ctx.params;
+
+  const fileStream = await fileService.downloadFile(image_id);
+  
+  ctx.set('Content-Disposition', `attachment; filename="${image_id}"`);
+  ctx.set('Content-Type', 'application/octet-stream');
+  ctx.status = 200;
+  ctx.body = fileStream
+}
+
 export const fileController = {
-  createFile
+  createFile,
+  downloadFile
 }
