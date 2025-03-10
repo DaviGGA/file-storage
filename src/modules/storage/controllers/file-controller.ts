@@ -7,10 +7,10 @@ async function createFile(ctx: Context) {
   const createFile = validateCreateFile(ctx.request.body);
   const file = ctx.request.file; 
 
-  const result = await fileService.createFile({...createFile, file})
+  const newFile = await fileService.createFile({...createFile, file})
 
   ctx.status = 201;
-  ctx.body = {success: true}
+  ctx.body = newFile;
 }
 
 export const fileController = {
