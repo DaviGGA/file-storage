@@ -15,11 +15,11 @@ async function createFile(ctx: Context) {
 
 async function downloadFile(ctx: Context) {
 
-  const { image_id } = ctx.params;
+  const { file_id } = ctx.params;
 
-  const fileStream = await fileService.downloadFile(image_id);
+  const fileStream = await fileService.downloadFile(file_id);
   
-  ctx.set('Content-Disposition', `attachment; filename="${image_id}"`);
+  ctx.set('Content-Disposition', `attachment; filename="${file_id}"`);
   ctx.set('Content-Type', 'application/octet-stream');
   ctx.status = 200;
   ctx.body = fileStream
