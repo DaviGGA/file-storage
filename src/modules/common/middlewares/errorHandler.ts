@@ -7,6 +7,8 @@ export async function errorHandler(ctx: Context, next: Next) {
     await next()
   } catch (error: unknown) {
 
+    console.log(error)
+
     if (error instanceof HttpException) {
       ctx.status = error.code;
       ctx.body = {

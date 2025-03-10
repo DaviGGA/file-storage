@@ -1,6 +1,8 @@
 import { CreateFile } from "../@types/CreateFile";
 import { File } from "../models/StorageItem";
+import { fileHandler } from "../utils/file-handler";
 import { pathHandler } from "../utils/path-handler";
+import fs from "fs/promises";
 
 async function createFile({name, path, file}: CreateFile) {
 
@@ -10,12 +12,18 @@ async function createFile({name, path, file}: CreateFile) {
     name: fileName,
     path: pathHandler.joinPath(fileName, path ?? null),
     size: file.size,
-    mimetype: file.mimetype
+    mimetype: file.mimetype,
+    file_id: file.filename
   })
 
 }
 
+async function downloadFile(imageId: string) {
+  return await fileHandler.getFileStream(imageId);
+}
+
 
 export const fileService = {
-  createFile
+  createFile,
+  downloadFile
 }

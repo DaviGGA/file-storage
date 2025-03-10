@@ -1,5 +1,7 @@
 import {join} from "path";
 
+const UPLOAD_PATH = join(process.cwd(),"src" ,"uploads");
+
 /**
  * Joins a given name with a path, defaulting to "user" if path is null.
  *
@@ -12,5 +14,6 @@ function joinPath(name:string, path: string | null) {
 }
 
 export const pathHandler = {
-  joinPath
+  joinPath,
+  UPLOAD_PATH
 }

@@ -5,6 +5,7 @@ export type IFile = {
   size: number,
   type: "file",
   mimetype: string,
+  file_id: string
 } & BaseStorageItem & Document
 
 
@@ -14,6 +15,10 @@ export const fileSchema = new mongoose.Schema<IFile>({
     type: Number
   },
   mimetype: {
+    required: true,
+    type: String,
+  },
+  file_id: {
     required: true,
     type: String
   }
