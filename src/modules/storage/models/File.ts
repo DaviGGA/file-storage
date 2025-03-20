@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { BaseStorageItem, StorageItem } from "./StorageItem";
+import { fileHandler } from "../utils/file-handler";
 
 export type IFile = {
   size: number,
@@ -24,3 +25,7 @@ export const fileSchema = new mongoose.Schema<IFile>({
   }
 })
 
+fileSchema.post("findOneAndDelete", (file: IFile | null) => {
+  if(!file) return;
+  fileHandler.deleteFile(file);
+})
