@@ -25,7 +25,18 @@ async function downloadFile(ctx: Context) {
   ctx.body = fileStream
 }
 
+async function deleteFile(ctx: Context) {
+  
+  const { id } = ctx.params;
+
+  const deletedFile = await fileService.deleteFile(id);
+
+  ctx.status = 200;
+  ctx.body = deletedFile
+}
+
 export const fileController = {
   createFile,
-  downloadFile
+  downloadFile,
+  deleteFile
 }

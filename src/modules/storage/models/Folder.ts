@@ -6,3 +6,4 @@ export type IFolder = {
 } & BaseStorageItem & Document
 
 export const folderSchema = new mongoose.Schema<IFolder>({})
+
