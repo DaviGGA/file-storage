@@ -27,9 +27,16 @@ async function deleteFile(id: string): Promise<IFile | null> {
   return File.findOneAndDelete({_id: id});
 }
 
+async function bulkDeleteFiles(fileIds: string[]) {
+  return File.deleteMany({
+    _id: {$in: fileIds}
+  })
+}
+
 
 export const fileService = {
   createFile,
   downloadFile,
-  deleteFile
+  deleteFile,
+  bulkDeleteFiles
 }

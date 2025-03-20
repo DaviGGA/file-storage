@@ -29,3 +29,7 @@ fileSchema.post("findOneAndDelete", (file: IFile | null) => {
   if(!file) return;
   fileHandler.deleteFile(file);
 })
+
+fileSchema.post("deleteMany", res => {
+  console.log("MANY FILE", res);
+})
