@@ -3,8 +3,9 @@ import { fileSchema, IFile } from "./File";
 import { folderSchema, IFolder } from "./Folder";
 
 export type BaseStorageItem = {
+  _id: string,
   name: string,
-  path: string
+  path: string,
 }
 
 export type IStorageItem = IFile | IFolder

@@ -1,6 +1,7 @@
 import { Context } from "koa";
 import { validateCreateFile } from "../validators/create-file-validator";
 import { fileService } from "../services/file-service";
+import { validateMoveFileBody } from "../validators/move-file-body-validator";
 
 async function createFile(ctx: Context) {
 
@@ -35,8 +36,19 @@ async function deleteFile(ctx: Context) {
   ctx.body = deletedFile
 }
 
+async function moveFile(ctx: Context) {
+  console.log(ctx.request.body);
+  const moveFileBody = validateMoveFileBody(ctx.request.body);
+
+  const movedFile = await fileService.moveFile(moveFileBody);
+
+  ctx.status = 200;
+  ctx.body = movedFile;
+}
+
 export const fileController = {
   createFile,
   downloadFile,
-  deleteFile
+  deleteFile,
+  moveFile
 }

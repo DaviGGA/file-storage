@@ -9,4 +9,6 @@ import { folderService } from "./modules/storage/services/folder-service";
 app.listen(config.PORT, async () => {
   console.log(`Server open on port ${config.PORT}`);
   await connectDatabase(); 
+
+  StorageItem.find().then(res => console.log(res))
 })
