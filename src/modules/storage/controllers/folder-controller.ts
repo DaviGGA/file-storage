@@ -1,6 +1,7 @@
 import { Context } from "koa";
 import { validateCreateFolder } from "../validators/create-folder-validator";
 import { folderService } from "../services/folder-service";
+import { validateMoveFolderBody } from "../validators/move-folder-body-validator";
 
 async function createFolder(ctx:  Context) {
   const input = validateCreateFolder(ctx.request.body);
@@ -33,9 +34,19 @@ async function findFirst(ctx: Context) {
   ctx.body = result;
 }
 
+async function moveFolder(ctx: Context) {
+  const moverFolderBody = validateMoveFolderBody(ctx.request.body);
+
+  await folderService.moveFolder(moverFolderBody);
+
+  ctx.status = 200;
+  ctx.body = {};
+}
+
 export const folderController = {
   createFolder,
   deleteFolder,
   findFolderDirectDescendants,
-  findFirst
+  findFirst,
+  moveFolder
 }
