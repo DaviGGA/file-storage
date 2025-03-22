@@ -37,7 +37,6 @@ async function deleteFile(ctx: Context) {
 }
 
 async function moveFile(ctx: Context) {
-  console.log(ctx.request.body);
   const moveFileBody = validateMoveFileBody(ctx.request.body);
 
   const movedFile = await fileService.moveFile(moveFileBody);

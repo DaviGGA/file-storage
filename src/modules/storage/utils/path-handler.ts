@@ -13,7 +13,15 @@ function joinPath(name:string, path: string | null) {
   return path ? join(path, name) : join("user", name);
 }
 
+function removeLast(path: string): string {
+  return path
+    .split("/")
+    .slice(0, -1)
+    .join("/")
+}
+
 export const pathHandler = {
   joinPath,
+  removeLast,
   UPLOAD_PATH
 }
