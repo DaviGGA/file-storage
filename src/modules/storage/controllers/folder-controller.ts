@@ -10,6 +10,15 @@ async function createFolder(ctx:  Context) {
   ctx.body = result;
 }
 
+async function deleteFolder(ctx: Context) {
+  const { id } = ctx.params;
+
+  await folderService.deleteFolder(id);
+
+  ctx.status = 200;
+  ctx.body = {};
+}
+
 async function findFolderDirectDescendants(ctx: Context) {
   const { id } = ctx.params;
   const result = await folderService.findFolderDirectDescendants(id);
@@ -26,6 +35,7 @@ async function findFirst(ctx: Context) {
 
 export const folderController = {
   createFolder,
+  deleteFolder,
   findFolderDirectDescendants,
   findFirst
 }
