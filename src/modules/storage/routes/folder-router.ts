@@ -6,5 +6,6 @@ export const folderRouter = new Router({prefix: "/folder"});
 folderRouter.post("/", folderController.createFolder);
 folderRouter.post("/move", folderController.moveFolder);
 folderRouter.get("/", folderController.findFirst);
-folderRouter.delete("/:id", folderController.deleteFolder);
+folderRouter.get("/properties/:id", folderController.getFolderProperties);
 folderRouter.get("/descendants/direct/:id", folderController.findFolderDirectDescendants);
+folderRouter.delete("/:id", folderController.deleteFolder);

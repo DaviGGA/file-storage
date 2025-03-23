@@ -1,5 +1,6 @@
 import { NotFound } from "../../../errors/NotFound";
 import { CreateFolder } from "../@types/CreateFolder"
+import { FolderProperties } from "../@types/FolderProperties.";
 import { MoveFolderBody } from "../@types/MoveFolderBody";
 import { IFile } from "../models/File";
 import { IFolder } from "../models/Folder";
@@ -85,10 +86,36 @@ async function moveFolder({receivingId, movingId}: MoveFolderBody) {
   await StorageItem.bulkWrite(movedItems);
 }
 
+async function getFolderProperties(id: string): Promise<FolderProperties> {
+  const foundFolder: IFolder | null = await Folder.findById(id);
+
+  if(!foundFolder) {
+    throw new NotFound("Folder not found");
+  }
+
+  const descendants = await StorageItem.find({
+    path: folderSearch.allDescendants(foundFolder.path, false),
+  })
+
+  return descendants.reduce((acc: FolderProperties, item) => {
+    return item.type === "file" ?
+    {
+      ...acc,
+      totalSize: acc.totalSize + item.size,
+      fileCount: acc.fileCount + 1,
+    } :
+    {
+      ...acc,
+      folderCount: acc.folderCount + 1
+    }
+  }, {totalSize: 0, folderCount: 0, fileCount: 0})
+}
+
 export const folderService = {
   createFolder,
   findFolderDirectDescendants,
   findFirst,
   deleteFolder,
-  moveFolder
+  moveFolder,
+  getFolderProperties
 }

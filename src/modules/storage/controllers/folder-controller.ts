@@ -43,10 +43,20 @@ async function moveFolder(ctx: Context) {
   ctx.body = {};
 }
 
+async function getFolderProperties(ctx: Context) {
+  const { id } = ctx.params;
+
+  const folderProperties = await folderService.getFolderProperties(id);
+
+  ctx.status = 200;
+  ctx.body = folderProperties
+}
+
 export const folderController = {
   createFolder,
   deleteFolder,
   findFolderDirectDescendants,
   findFirst,
-  moveFolder
+  moveFolder,
+  getFolderProperties
 }

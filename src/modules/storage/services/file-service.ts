@@ -57,5 +57,5 @@ export const fileService = {
   createFile,
   downloadFile,
   deleteFile,
-  moveFile
+  moveFile,
 }
