@@ -6,6 +6,7 @@ export type BaseStorageItem = {
   _id: string,
   name: string,
   path: string,
+  createdAt: Date
 }
 
 export type IStorageItem = IFile | IFolder
